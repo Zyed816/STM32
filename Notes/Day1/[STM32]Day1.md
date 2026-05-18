@@ -6,15 +6,15 @@
 
 打开Keil，Project -> New Project新建项目
 
-![屏幕截图 2026-05-17 132450](.\screenShots\屏幕截图_2026-05-17_132450.png)
+![屏幕截图 2026-05-17 132450](./screenShots/屏幕截图_2026-05-17_132450.png)
 
 选择项目存放的路径，项目内容由文件夹的名称说明，文件名填写Project
 
-![屏幕截图 2026-05-17 132712](.\screenShots\屏幕截图 2026-05-17 132712.png)
+![屏幕截图 2026-05-17 132712](./screenShots/屏幕截图 2026-05-17 132712.png)
 
 在弹出的Select Device选项卡里选择STMicroelectronics -> STM32F1 Series -> STM32F103 -> STM32F103C8点击确定，接下来弹出的Manage Run-Time Environment选项卡可以直接关闭
 
-![image-20260517134210996](.\screenShots\屏幕截图 2026-05-17 134028.png)
+![image-20260517134210996](./screenShots/屏幕截图 2026-05-17 134028.png)
 
 ## 添加必要的工程文件
 
@@ -54,7 +54,7 @@
 
 右键User -> Add New Item to Group 'User' -> C File(.c) -> Name为main -> location为User\路径
 
-![image-20260517141929090](.\screenShots\屏幕截图 2026-05-17 141744.png)
+![image-20260517141929090](D:\STM32\Notes\Day1\screenShots\屏幕截图 2026-05-17 141744.png)
 
 打开main.c，右键插入头文件
 
