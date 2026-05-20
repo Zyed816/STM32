@@ -6,11 +6,11 @@ GPIO(General Purpose Input Output)指的是通用输入输出口，可配置为8
 
 ### GPIO基本结构
 
-![image-20260518193955702](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518193955702.png)
+![image-20260518193955702](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518193955702.png)
 
 寄存器均为32位，由于只有0~15共16个引脚，因此只使用低16位
 
-![image-20260518194337840](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518194337840.png)
+![image-20260518194337840](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518194337840.png)
 
 **输入模式**：
 
@@ -20,7 +20,7 @@ $V_{DD}$ 接3.3V，$V_{SS}$ 接0V，与两个保护二极管配合实现输入�
 
 施密特（肖基特）触发器实现了对输入电压的整形。引脚输入虽然为数字信号，实际情况下可能产生失真。
 
-![image-20260518200153979](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518200153979.png)
+![image-20260518200153979](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518200153979.png)
 
 模拟输入与ADC相连，输入模拟信号。复用功能输入连接到其他需要读取端口的外设，如串口的输入引脚，输入数字信号。
 
@@ -32,7 +32,7 @@ GPIO 通过数据选择器在输出数据寄存器和片上外设信号之间进
 
 数据选择器的工作原理
 
-![image-20260518201357559](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518201357559.png)
+![image-20260518201357559](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518201357559.png)
 
 输出控制通过控制PMOS和NMOS是否工作实现推挽输出、开漏输出。
 
@@ -48,23 +48,23 @@ PMOS负责“拉高”， NMOS负责"拉低"。
 
 GPIO共有以下8种模式
 
-![image-20260518203417150](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518203417150.png)
+![image-20260518203417150](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518203417150.png)
 
 **浮空/上拉/下拉输入电路结构**：
 
-![image-20260518203609220](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518203609220.png)
+![image-20260518203609220](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518203609220.png)
 
 **模拟输入电路结构**：
 
-![image-20260518203726705](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518203726705.png)
+![image-20260518203726705](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518203726705.png)
 
 **开漏/推挽输出电路结构**：
 
-![image-20260518203830918](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518203830918.png)
+![image-20260518203830918](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518203830918.png)
 
 **复用开漏/推挽输出电路结构**：
 
-![image-20260518203938999](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260518203938999.png)
+![image-20260518203938999](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260518203938999.png)
 
 很多单片机或芯片都使用了**高电平弱驱动，低电平强驱动**的策略，因此点亮LED时经常设置LED点亮方式为低电平点亮。
 
@@ -72,11 +72,11 @@ GPIO共有以下8种模式
 
 `keilkill.bat`可以清除项目编译产生的中间文件，减小项目体积
 
-![image-20260519091546489](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519091546489.png)
+![image-20260519091546489](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519091546489.png)
 
 STM32外设总线架构图
 
-![img](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/c51338631d294d6d9b47bf866f5335a9.png)
+![img](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/c51338631d294d6d9b47bf866f5335a9.png)
 
 STM32采用分层总线结构，有AHB，AHB1，AHB2三条总线，不同总线与不同速度的外设相连，速度：$AHB > AHB2 > AHB1$ 。这里的速度指的是频率，速度越高，频率越高。
 
@@ -141,7 +141,7 @@ void GPIO_Init(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct);
 
 在工程文件夹下新建System\存放延时函数，并在Keil中添加组，元素和路径
 
-![image-20260519102030239](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519102030239.png)
+![image-20260519102030239](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519102030239.png)
 
 编写`main.c`并编译
 
@@ -174,7 +174,7 @@ int main(void)
 
 打开Proteus，新建工程，添加STM32元器件并绘制电路图，编辑STM32属性，步骤与[Day1]中完全相同。开始仿真
 
-![Adobe Express - 5月19日](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/Adobe-Express-5%E6%9C%8819%E6%97%A5.gif)
+![Adobe Express - 5月19日](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/Adobe-Express-5%E6%9C%8819%E6%97%A5.gif)
 
 将代码改为
 
@@ -207,7 +207,7 @@ int main(void)
 
 这段代码同时初始化了PB12和PB13，在循环中只修改了PB13的电平，开始仿真
 
-![Adobe Express - 5月19日 (1)](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/Adobe-Express-5%E6%9C%8819%E6%97%A5-1.gif)
+![Adobe Express - 5月19日 (1)](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/Adobe-Express-5%E6%9C%8819%E6%97%A5-1.gif)
 
 观察到LED闪烁，PB12输出低电平
 
@@ -215,15 +215,15 @@ int main(void)
 
 在元件库中搜索res，添加电阻
 
-![image-20260519122215846](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519122215846.png)
+![image-20260519122215846](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519122215846.png)
 
 双击电阻修改电阻的阻值为330欧姆，绘制电路
 
-![image-20260519122339171](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519122339171.png)
+![image-20260519122339171](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519122339171.png)
 
 启动仿真，可以观察到PB13输出交替的高低电平，LED闪烁，PB12输出低电平
 
-![5月19日 (2)](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/5%E6%9C%8819%E6%97%A5-2.gif)
+![5月19日 (2)](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/5%E6%9C%8819%E6%97%A5-2.gif)
 
 ## 验证推挽输出和开漏输出特性
 
@@ -239,7 +239,7 @@ int main(void)
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	// 推挽输出模式
 ```
 
-![5月19日 (2)](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/5%E6%9C%8819%E6%97%A5-2.gif)
+![5月19日 (2)](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/5%E6%9C%8819%E6%97%A5-2.gif)
 
 **推挽输出+高电平点亮**：
 
@@ -247,7 +247,7 @@ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	// 推挽输出模式
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	// 推挽输出模式
 ```
 
-![动画](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/%E5%8A%A8%E7%94%BB.gif)
+![动画](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/%E5%8A%A8%E7%94%BB.gif)
 
 **开漏输出+低电平点亮**：
 
@@ -255,7 +255,7 @@ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	// 推挽输出模式
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	// 开漏输出模式
 ```
 
-![动画](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/%E5%8A%A8%E7%94%BB-1779171593812-4.gif)
+![动画](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/%E5%8A%A8%E7%94%BB-1779171593812-4.gif)
 
 **开漏输出+高电平点亮**：（为什么还是亮？Proteus仿真缺陷？）
 
@@ -263,7 +263,7 @@ GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	// 开漏输出模式
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	// 开漏输出模式
 ```
 
-![动画](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/%E5%8A%A8%E7%94%BB-1779171459281-2.gif)
+![动画](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/%E5%8A%A8%E7%94%BB-1779171459281-2.gif)
 
 ## LED流水灯
 
@@ -318,7 +318,7 @@ int main(void)
 
 现象
 
-![动画](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/%E5%8A%A8%E7%94%BB-1779173786728-6.gif)
+![动画](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/%E5%8A%A8%E7%94%BB-1779173786728-6.gif)
 
 ## 蜂鸣器
 
@@ -327,11 +327,11 @@ int main(void)
 - 有源蜂鸣器只要两端有电势差就会响，发出固定频率的声音
 - 无源蜂鸣器只有提供方波才会响，可以发出不同频率的声音
 
-![image-20260519195123449](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519195123449.png)
+![image-20260519195123449](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519195123449.png)
 
 注意要修改有源蜂鸣器的工作电压为3.3V
 
-![image-20260519195526350](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519195526350.png)
+![image-20260519195526350](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519195526350.png)
 
 代码
 
@@ -364,13 +364,13 @@ int main(void)
 
 绘制电路
 
-![image-20260519195402166](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260519195402166.png)
+![image-20260519195402166](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260519195402166.png)
 
 运行仿真蜂鸣器不响，查阅资料发现可能是输出电压不够？蜂鸣器需要与三极管配合使用，引脚输出逻辑控制信号控制三极管是否接通，三极管导通后由电源正负极负责对蜂鸣器供电
 
 
 
-![MBXY-CR-a6dc7e4f0007b7ffde163e418969f622](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/MBXY-CR-a6dc7e4f0007b7ffde163e418969f622-1779179832471-9.png)
+![MBXY-CR-a6dc7e4f0007b7ffde163e418969f622](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/MBXY-CR-a6dc7e4f0007b7ffde163e418969f622-1779179832471-9.png)
 
 三极管结构：B = Base(基极)，C = Collector(集电极)，E = Emitter(发射极)。箭头所指的方向是三极管导通时电流的方向。
 
@@ -378,12 +378,12 @@ int main(void)
 
 固件库搜索PNP,选择DEVICE类型的器件
 
-![image-20260520092708330](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260520092708330.png)
+![image-20260520092708330](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260520092708330.png)
 
 绘制电路如图，连接顺序为 VCC -> 发射极 -> 集线极 -> GND，PB12 -> 基极作控制信号。运行仿真后，蜂鸣器交替发声。
 
-![image-20260520093758419](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260520093758419.png)
+![image-20260520093758419](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260520093758419.png)
 
 使用NPN型三极管同样可以实现蜂鸣器交替发声。
 
-![image-20260520093421534](https://raw.githubusercontent.com/Zyed816/STM32/main/notes-assets/Day2/image-20260520093421534.png)
+![image-20260520093421534](https://cdn.jsdelivr.net/gh/Zyed816/STM32@main/notes-assets/Day2/image-20260520093421534.png)
