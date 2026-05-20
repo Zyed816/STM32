@@ -174,7 +174,7 @@ int main(void)
 
 打开Proteus，新建工程，添加STM32元器件并绘制电路图，编辑STM32属性，步骤与[Day1]中完全相同。开始仿真
 
-![Adobe Express - 5月19日](./assets/Adobe Express - 5月19日.gif)
+![Adobe Express - 5月19日](<./assets/Adobe Express - 5月19日.gif>)
 
 将代码改为
 
@@ -207,7 +207,7 @@ int main(void)
 
 这段代码同时初始化了PB12和PB13，在循环中只修改了PB13的电平，开始仿真
 
-![Adobe Express - 5月19日 (1)](./assets/Adobe Express - 5月19日 (1).gif)
+![Adobe Express - 5月19日 (1)](<./assets/Adobe Express - 5月19日 (1).gif>)
 
 观察到LED闪烁，PB12输出低电平
 
@@ -223,7 +223,7 @@ int main(void)
 
 启动仿真，可以观察到PB13输出交替的高低电平，LED闪烁，PB12输出低电平
 
-![5月19日 (2)](./assets/5月19日 (2).gif)
+![5月19日 (2)](<./assets/5月19日 (2).gif>)
 
 ## 验证推挽输出和开漏输出特性
 
@@ -239,7 +239,7 @@ int main(void)
 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;	// 推挽输出模式
 ```
 
-![5月19日 (2)](./assets/5月19日 (2).gif)
+![5月19日 (2)](<./assets/5月19日 (2).gif>)
 
 **推挽输出+高电平点亮**：
 
