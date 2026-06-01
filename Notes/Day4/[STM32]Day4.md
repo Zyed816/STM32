@@ -279,4 +279,3 @@ typedef struct {
     uint16_t I2C_AcknowledgedAddress; /*!< 指定地址的长度，可为7位及10位 */
 } I2C_InitTypeDef;
 ```
-
