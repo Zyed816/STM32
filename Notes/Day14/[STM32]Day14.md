@@ -71,3 +71,136 @@ WDGTB预分频系数 = 2的WDGTP次方
 **IWDG和WWDG对比**
 
 ![image-20260611211632605](./assets/image-20260611211632605.png)
+
+## 独立看门狗
+
+![14-1](./assets/14-1.jpg)
+
+按键用于阻塞喂狗
+
+![image-20260611195528059](./assets/image-20260611195528059.png)
+
+独立看门狗配置流程：开启LSI时钟（开启看门狗后系统自动开启，无需手动操作） -> 解除预分频器和重装载寄存器写保护 -> 向预分频器和重装载寄存器写入 -> 向键寄存器写入0xCCCC启动看门狗 -> 主循环中喂狗
+
+F_LSI = 40kHz，T_LSI = 0.025ms
+
+```c
+#include "stm32f10x.h"                  // Device header
+#include "OLED_Software.h"
+#include "Delay.h"
+#include "Button.h"
+
+int main(void)
+{
+	
+	OLED_Init();
+	Button_Init();
+	
+	OLED_ShowString(1, 1, "IWDG TEST");
+	
+	if(RCC_GetFlagStatus(RCC_FLAG_IWDGRST) == SET) {
+		// 独立看门狗引起的复位
+		OLED_ShowString(2, 1, "IWDGRST");
+		Delay_ms(500);
+		OLED_ShowString(2, 1, "       ");
+		Delay_ms(100);
+		
+		RCC_ClearFlag();
+	} else {
+		OLED_ShowString(3, 1, "RST");
+		Delay_ms(500);  
+		OLED_ShowString(3, 1, "   ");
+		Delay_ms(100);
+	}
+	
+	// 解除预分频器和重装寄存器写保护
+	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+	
+	// 向预分频器和重装寄存器写入，T_LSI = 0.025ms，设置超时时间为1000ms
+	IWDG_SetPrescaler(IWDG_Prescaler_16);
+	IWDG_SetReload(2499);
+	
+	// 先喂一次狗，确保重装寄存器中的值为2499
+	IWDG_ReloadCounter();
+	
+	// 启动看门狗
+	IWDG_Enable();
+
+	while(1)
+	{
+		Button_Read(Pin_11);
+		
+		IWDG_ReloadCounter();
+		
+		OLED_ShowString(4, 1, "FEED");
+		Delay_ms(200);  
+		OLED_ShowString(4, 1, "    ");
+		Delay_ms(600);
+	}
+}
+
+```
+
+## 窗口看门狗
+
+![14-2](./assets/14-2.jpg)
+
+![image-20260611202632256](./assets/image-20260611202632256.png)
+
+窗口看门狗初始化流程：开启时钟（开启APB1时钟） -> 配置预分频器和配置寄存器 -> 使能WWDG并写入控制寄存器 -> 主循环喂狗
+
+```c
+#include "stm32f10x.h"                  // Device header
+#include "OLED_Software.h"
+#include "Delay.h"
+#include "Button.h"
+
+int main(void)
+{
+	
+	OLED_Init();
+	Button_Init();
+	
+	OLED_ShowString(1, 1, "WWDG TEST");
+	
+	if(RCC_GetFlagStatus(RCC_FLAG_WWDGRST) == SET) {
+		// 窗口看门狗引起的复位
+		OLED_ShowString(2, 1, "WWDGRST");
+		Delay_ms(500);
+		OLED_ShowString(2, 1, "       ");
+		Delay_ms(100);
+		
+		RCC_ClearFlag();
+	} else {
+		OLED_ShowString(3, 1, "RST");
+		Delay_ms(500);  
+		OLED_ShowString(3, 1, "   ");
+		Delay_ms(100);
+	}
+	
+	// 开启时钟
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_WWDG, ENABLE);
+	
+	// 设置预分频和窗口值
+	WWDG_SetPrescaler(WWDG_Prescaler_8);	// 分频系数8，分频系数55 -> 超时时间50ms
+	WWDG_SetWindowValue(21 | 0x40);		// 窗口值21 -> 30ms以后才可喂狗
+	
+	// 使能WWDG并写入控制寄存器
+	WWDG_Enable(54 | 0x40);
+
+	while(1)
+	{
+		Button_Read(Pin_11);
+			
+		OLED_ShowString(4, 1, "FEED");
+		Delay_ms(20);  
+		OLED_ShowString(4, 1, "    ");
+		Delay_ms(20);
+		
+		// 喂狗，放在下面避免喂狗过早
+		WWDG_SetCounter(54 | 0x40);
+	}
+}
+
+```
+
